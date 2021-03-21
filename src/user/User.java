@@ -16,7 +16,7 @@ public class User {
 
   @Override
   public String toString() {
-    return nome;
+    return "\n" + "Nome: " + nome + "\n" + "Saldo: " + saldo + "\n";
   }
 
   public double getSaldo() {

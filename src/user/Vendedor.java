@@ -1,14 +1,43 @@
 package user;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import store.utils.Produto;
+
 public class Vendedor extends User {
   
   private double valorAReceber;
   private String cnpj;
+  private int vendasReal;
+  private Set<Produto> catalogo;
   
-  public Vendedor(String nome, double saldo, String cnpj) {
-    super(nome, saldo);
+  public Vendedor(String nome, String cnpj) {
+    super(nome, 0.0);
     this.valorAReceber = 0.0;
+    this.vendasReal = 0;
     this.cnpj = cnpj;
+    this.catalogo = new HashSet<>();
+  }
+
+  public void addCatalog(Produto prod) {
+    this.catalogo.add(prod);
+  }
+
+  public void showCatalogo() {
+    for (Produto produtos : catalogo) {
+      System.out.println(produtos);
+    }
+  }
+
+  public String getCnpj() {
+    return cnpj;
+  }
+
+  @Override
+  public String toString() {
+    String valRec= String.valueOf(this.valorAReceber);
+    return super.toString() + "CNPJ: " + this.cnpj + "\n" + "Val. Receber: " + valRec + "\n" + "Vend. Real.: " + this.vendasReal ;
   }
 
   @Override

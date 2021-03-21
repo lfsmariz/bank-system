@@ -1,4 +1,7 @@
+import store.Store;
+import store.utils.Produto;
 import user.Comprador;
+import user.Vendedor;
 
 /**
  * BankSystem
@@ -6,8 +9,43 @@ import user.Comprador;
 public class BankSystem {
   public static void main(String[] args) {
 
-    Comprador usuario1 = new Comprador("luiz", 15, "123");
+    Store loja = new Store();
 
-    System.out.println(usuario1);
+    Produto prod1 = new Produto("111", "produto1", 10.0);
+    Produto prod2 = new Produto("222", "produto2", 20.0);
+
+    Comprador usuario1 = new Comprador("luiz", 15, "123");
+    Comprador usuario2 = new Comprador("filipe", 15, "124");
+
+    Vendedor vend1 = new Vendedor("camila", "1234");
+    Vendedor vend2 = new Vendedor("sales", "1235");
+
+    loja.addVendedor(vend1);
+    loja.addVendedor(vend2);
+
+    vend1.addCatalog(prod1);
+    vend1.addCatalog(prod2);
+
+    vend2.addCatalog(prod2);
+
+    loja.addComprador(usuario1);
+    loja.addComprador(usuario2);
+
+    System.out.println("--------- Show Compradores -----------");
+
+    loja.showCompradores();
+
+    System.out.println("--------- Show Vendedores -----------");
+
+    loja.showVendedores();
+
+    System.out.println("--------- Show Vendedor -----------");
+
+    loja.showVendedor("1234");
+
+    System.out.println("--------- Show Comprador -----------");
+
+    loja.showComprador("124");
+
   }
 }
