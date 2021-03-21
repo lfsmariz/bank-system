@@ -11,6 +11,14 @@ public class Produto {
     this.preco = preco;
   }
 
+  public String getCodigo() {
+    return codigo;
+  }
+
+  public double getPreco() {
+    return preco;
+  }
+
   @Override
   public String toString() {
     String divide = "------- \n";

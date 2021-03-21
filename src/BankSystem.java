@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import store.Store;
 import store.utils.Produto;
 import user.Comprador;
@@ -11,8 +15,8 @@ public class BankSystem {
 
     Store loja = new Store();
 
-    Produto prod1 = new Produto("111", "produto1", 10.0);
-    Produto prod2 = new Produto("222", "produto2", 20.0);
+    Produto prod1 = new Produto("111", "produto1", 1.0);
+    Produto prod2 = new Produto("222", "produto2", 2.0);
 
     Comprador usuario1 = new Comprador("luiz", 15, "123");
     Comprador usuario2 = new Comprador("filipe", 15, "124");
@@ -31,19 +35,34 @@ public class BankSystem {
     loja.addComprador(usuario1);
     loja.addComprador(usuario2);
 
-    System.out.println("--------- Show Compradores -----------");
+    // System.out.println("--------- Show Compradores -----------");
 
-    loja.showCompradores();
+    // loja.showCompradores();
 
-    System.out.println("--------- Show Vendedores -----------");
+    // System.out.println("--------- Show Vendedores -----------");
 
-    loja.showVendedores();
+    // loja.showVendedores();
 
     System.out.println("--------- Show Vendedor -----------");
 
     loja.showVendedor("1234");
 
     System.out.println("--------- Show Comprador -----------");
+
+    loja.showComprador("124");
+
+    System.out.println("--------- Após Compra -----------");
+
+    List<String> pedido = new ArrayList<>();
+
+    pedido.add("111");
+    pedido.add("111");
+    pedido.add("111");
+    pedido.add("222");
+
+    LocalDate dataVencimento = LocalDate.of(2021, 4, 21);
+    
+    loja.boleto("124", "1234", pedido, dataVencimento);
 
     loja.showComprador("124");
 

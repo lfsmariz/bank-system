@@ -17,6 +17,14 @@ public class Comprador extends User {
     return cpf;
   }
 
+  public void addCompraRealizada() {
+    this.comprasRealizadas += 1;
+  }
+
+  public void addValorAPagar(double valorAPagar) {
+    this.valorAPagar += valorAPagar;
+  }
+
   @Override
   public String toString() {
     String valPag = String.valueOf(this.valorAPagar);

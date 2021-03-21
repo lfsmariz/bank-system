@@ -20,8 +20,17 @@ public class Vendedor extends User {
     this.catalogo = new HashSet<>();
   }
 
+  public void addVendaRealizada() {
+    this.vendasReal += 1;
+  }
+
   public void addCatalog(Produto prod) {
     this.catalogo.add(prod);
+  }
+
+
+  public void addValorAReceber(double valorAReceber) {
+    this.valorAReceber += valorAReceber;
   }
 
   public void showCatalogo() {
@@ -32,6 +41,10 @@ public class Vendedor extends User {
 
   public String getCnpj() {
     return cnpj;
+  }
+
+  public Set<Produto> getCatalogo() {
+    return catalogo;
   }
 
   @Override
