@@ -29,6 +29,18 @@ public class Store {
     this.listaVendedor.add(vend);
   }
 
+  public void addProduto(Produto prod) {
+    this.listaProdutos.add(prod);
+  }
+
+  public Set<Produto> getListaProdutos() {
+    return listaProdutos;
+  }
+  
+  public Set<Vendedor> getListaVendedor() {
+    return listaVendedor;
+  }
+
   public void pix(String cpfComprador, String cnpjVendedor, List<String> codigos) {
     Comprador compradorAtual = new Comprador("samplep", 0, "samplep");
     Vendedor vendedorAtual = new Vendedor("samplevp", "samplevp");
@@ -173,6 +185,12 @@ public class Store {
         System.out.println("Produtos Cadastrados");
         vendedor.showCatalogo();
       }
+    }
+  }
+
+  public void showProdutos() {
+    for (Produto produto : listaProdutos) {
+      System.out.println(produto);
     }
   }
 
