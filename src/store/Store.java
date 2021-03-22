@@ -36,7 +36,7 @@ public class Store {
   public Set<Produto> getListaProdutos() {
     return listaProdutos;
   }
-  
+
   public Set<Vendedor> getListaVendedor() {
     return listaVendedor;
   }
@@ -100,8 +100,8 @@ public class Store {
     }
 
     if (compradorAtual.getSaldo() > valorCompra) {
-      double novoSaldoComprador = compradorAtual.getSaldo() - valorCompra * (1 + taxaCartao);
-      double novoSaldoVendedor = vendedorAtual.getSaldo() + valorCompra;
+      double novoSaldoComprador = compradorAtual.getSaldo() - valorCompra;
+      double novoSaldoVendedor = vendedorAtual.getSaldo() + valorCompra * (1 - taxaCartao);
       compradorAtual.setSaldo(novoSaldoComprador);
       vendedorAtual.setSaldo(novoSaldoVendedor);
       compradorAtual.addCompraRealizada();
@@ -134,10 +134,10 @@ public class Store {
     }
 
     if (compradorAtual.getSaldo() > valorCompra) {
-      double novoSaldoComprador = compradorAtual.getSaldo() - valorCompra * (1 + taxaCartao);
-      double novoSaldoVendedor = vendedorAtual.getSaldo() + valorCompra;
-      compradorAtual.setSaldo(novoSaldoComprador);
-      vendedorAtual.setSaldo(novoSaldoVendedor);
+      double valorAPagar = valorCompra;
+      double valorAReceber = valorCompra * (1 - taxaCartao);
+      compradorAtual.addValorAPagar(valorAPagar);;
+      vendedorAtual.addValorAReceber(valorAReceber);
       compradorAtual.addCompraRealizada();
       vendedorAtual.addVendaRealizada();
     }
@@ -168,8 +168,8 @@ public class Store {
     }
 
     if (compradorAtual.getSaldo() > valorCompra && (date.isAfter(LocalDate.now()) || date.isEqual(LocalDate.now()))) {
-      double novoSaldoComprador = compradorAtual.getSaldo() - valorCompra - taxaBoleto;
-      double novoSaldoVendedor = vendedorAtual.getSaldo() + valorCompra;
+      double novoSaldoComprador = compradorAtual.getSaldo() - valorCompra;
+      double novoSaldoVendedor = vendedorAtual.getSaldo() + valorCompra - taxaBoleto;
       compradorAtual.setSaldo(novoSaldoComprador);
       vendedorAtual.setSaldo(novoSaldoVendedor);
       compradorAtual.addCompraRealizada();
