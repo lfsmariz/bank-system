@@ -1,6 +1,9 @@
 package systemIO;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import store.Store;
@@ -52,20 +55,101 @@ public class SystemIO {
     switch (formaDePagamento) {
     case "p":
       System.out.println("\nPix Selecionado\n");
+      payWithPix();
       break;
     case "d":
       System.out.println("\nDebito Selecionado\n");
+      payWithDebito();
       break;
     case "c":
       System.out.println("\nCredito Selecionado\n");
+      payWithCredito();
       break;
     case "b":
       System.out.println("\nBoleto Selecionado\n");
+      payWithBoleto();
       break;
     default:
-      System.out.println("Nenhuma opcao selecionada");
+      System.out.println("Nenhuma opcao valida selecionada");
       break;
     }
+  }
+
+  private void payWithPix() {
+    String cnpjVendedor;
+    String cpfComprador;
+    String codigoString;
+
+    System.out.println("\nInsira o cpf do comprador");
+    cpfComprador = this.ioManager.next();
+    System.out.println("\nInsira o cnpj do vendedor");
+    cnpjVendedor = this.ioManager.next();
+    System.out.println("\nInsira os codigos dos produtos separados apenas por virgulas");
+    codigoString = this.ioManager.next();
+
+    List<String> codigosProdutos = Arrays.asList(codigoString.split(","));
+
+    loja.pix(cpfComprador, cnpjVendedor, codigosProdutos);
+  }
+
+  private void payWithDebito() {
+    String cnpjVendedor;
+    String cpfComprador;
+    String codigoString;
+
+    System.out.println("\nInsira o cpf do comprador");
+    cpfComprador = this.ioManager.next();
+    System.out.println("\nInsira o cnpj do vendedor");
+    cnpjVendedor = this.ioManager.next();
+    System.out.println("\nInsira os codigos dos produtos separados apenas por virgulas");
+    codigoString = this.ioManager.next();
+
+    List<String> codigosProdutos = Arrays.asList(codigoString.split(","));
+
+    loja.debito(cpfComprador, cnpjVendedor, codigosProdutos);
+  }
+
+  private void payWithCredito() {
+    String cnpjVendedor;
+    String cpfComprador;
+    String codigoString;
+
+    System.out.println("\nInsira o cpf do comprador");
+    cpfComprador = this.ioManager.next();
+    System.out.println("\nInsira o cnpj do vendedor");
+    cnpjVendedor = this.ioManager.next();
+    System.out.println("\nInsira os codigos dos produtos separados apenas por virgulas");
+    codigoString = this.ioManager.next();
+
+    List<String> codigosProdutos = Arrays.asList(codigoString.split(","));
+
+    loja.credito(cpfComprador, cnpjVendedor, codigosProdutos);
+  }
+
+  private void payWithBoleto() {
+    String cnpjVendedor;
+    String cpfComprador;
+    String codigoString;
+    int anoVencimento;
+    int mesVencimento;
+    int diaVencimento;
+
+    System.out.println("\nInsira o cpf do comprador");
+    cpfComprador = this.ioManager.next();
+    System.out.println("\nInsira o cnpj do vendedor");
+    cnpjVendedor = this.ioManager.next();
+    System.out.println("\nInsira os codigos dos produtos separados apenas por virgulas");
+    codigoString = this.ioManager.next();
+    System.out.println("\nInsira o dia de vencimento do boleto");
+    diaVencimento = this.ioManager.nextInt();
+    System.out.println("\nInsira o mês de vencimento do boleto");
+    mesVencimento = this.ioManager.nextInt();
+    System.out.println("\nInsira o ano de vencimento do boleto");
+    anoVencimento = this.ioManager.nextInt();
+
+    List<String> codigosProdutos = Arrays.asList(codigoString.split(","));
+
+    loja.boleto(cpfComprador, cnpjVendedor, codigosProdutos, LocalDate.of(anoVencimento, mesVencimento, diaVencimento));
   }
 
   private static void waitForEnter() {
